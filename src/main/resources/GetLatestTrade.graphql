@@ -1,0 +1,29 @@
+query GetLatestTrade($id: ID!){
+  publicSyndication(id: $id) {
+    id
+    name
+    exchange
+    owner{
+      nickname
+    }
+    closedTrades(first: 1, sortDirection: DESC) {
+      edges {
+        cursor
+        node {
+          id
+          orders {
+            side
+            placedTime
+            filledPrice
+            currencyPairDetails {
+              pair
+            }
+          }
+          profitPercentage
+          isClosed
+        }
+      }
+    }
+  }
+}
+
